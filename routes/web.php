@@ -2,6 +2,9 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Landing;
+
 use Inertia\Inertia;
 
 /*
@@ -23,6 +26,12 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/home', [Landing::class, 'home'])->name('home');
+Route::get('/events', [Landing::class, 'events'])->name('events');
+Route::get('/about', [Landing::class, 'about'])->name('about');
+Route::get('/contact', [Landing::class, 'contact'])->name('contact');
+Route::post('/contact', [Landing::class, 'sendContact'])->name('contact.send');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
