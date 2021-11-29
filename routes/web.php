@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Landing;
@@ -18,16 +17,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-
-Route::get('/home', [Landing::class, 'home'])->name('home');
+Route::get('/', [Landing::class, 'home'])->name('home');
 Route::get('/events', [Landing::class, 'events'])->name('events');
 Route::get('/about', [Landing::class, 'about'])->name('about');
 Route::get('/contact', [Landing::class, 'contact'])->name('contact');

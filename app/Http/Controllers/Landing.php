@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+// use Illuminate\Support\Facades\Route;
 
 class Landing extends Controller
 {
@@ -17,7 +17,8 @@ class Landing extends Controller
     public function home(Request $request)
     {
         return Inertia::render('Landing/Home', [
-
+			// 'canLogin' => Route::has('login'),
+			// 'canRegister' => Route::has('register'),
 		]);
     }
 
