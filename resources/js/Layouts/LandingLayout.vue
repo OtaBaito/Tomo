@@ -2,7 +2,7 @@
     <div>
         <Head :title="title" />
 
-        <jet-banner />
+        <!-- <jet-banner /> -->
 
         <div class="min-h-screen bg-white">
             <nav>
@@ -13,7 +13,7 @@
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
                                 <Link :href="route('home')">
-									<img src="assets/logo.png" class="block h-36 w-36" alt="Tomodachi Emblem">
+									<img src="/assets/logo.png" class="block h-36 w-36" alt="Tomodachi Emblem">
                                 </Link>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
 
 <script>
     import { defineComponent } from 'vue'
-    import JetBanner from '@/Jetstream/Banner.vue'
+    // import JetBanner from '@/Jetstream/Banner.vue'
 	import NavLink from '@/Pages/Landing/Partials/Nav.vue'
     import { Head, Link } from '@inertiajs/inertia-vue3';
 
@@ -56,7 +56,7 @@
 
         components: {
             Head,
-            JetBanner,
+            // JetBanner,
             Link,
 			NavLink,
         },

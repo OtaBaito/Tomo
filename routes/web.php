@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Landing;
+use App\Http\Controllers\Momo;
 
 use Inertia\Inertia;
 
@@ -17,12 +18,18 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [Landing::class, 'home'])->name('home');
-Route::get('/events', [Landing::class, 'events'])->name('events');
-Route::get('/about', [Landing::class, 'about'])->name('about');
-Route::get('/contact', [Landing::class, 'contact'])->name('contact');
-Route::post('/contact', [Landing::class, 'sendContact'])->name('contact.send');
+Route::domain('go.localhost')->group(function () {
+	Route::get('/', [Momo::class, 'home'])->name('momolink');
+});
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+Route::domain('localhost')->group(function () {
+	Route::get('/', [Landing::class, 'home'])->name('home');
+	Route::get('/events', [Landing::class, 'events'])->name('events');
+	Route::get('/about', [Landing::class, 'about'])->name('about');
+	Route::get('/contact', [Landing::class, 'contact'])->name('contact');
+	Route::post('/contact', [Landing::class, 'sendContact'])->name('contact.send');
+
+	Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+	    return Inertia::render('Dashboard');
+	})->name('dashboard');
+});

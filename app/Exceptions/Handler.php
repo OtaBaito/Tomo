@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Inertia\Inertia;
 
 class Handler extends ExceptionHandler
 {
@@ -35,7 +36,32 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+
         });
     }
+
+	/**
+ 	 * Prepare exception for rendering.
+ 	 *
+ 	 * @param  \Throwable  $e
+ 	 * @return \Throwable
+ 	 */
+	public function render($request, Throwable $e)
+	{
+		$response = parent::render($request, $e);
+
+		if ($request->is('api/*')) {
+			return response()->json([
+				'message' => 'Record not found.'
+			], 404);
+		}
+
+		if (in_array($response->status(), [500, 503, 404, 403, 419])) {
+			return Inertia::render('Error', ['status' => $response->status()])
+				->toResponse($request)
+				->setStatusCode($response->status());
+		}
+
+		return $response;
+	}
 }
