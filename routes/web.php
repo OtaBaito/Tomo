@@ -18,11 +18,15 @@ use Inertia\Inertia;
 |
 */
 
-Route::domain('go.tomo.or.id')->group(function () {
+Route::domain('go.localhost')->group(function () {
 	Route::get('/', [Momo::class, 'home'])->name('momolink');
 });
 
-Route::domain('tomo.or.id')->group(function () {
+Route::domain('api.localhost')->group(function () {
+	Route::get('/', [Momo::class, 'home'])->name('jinja');
+});
+
+Route::domain('localhost')->group(function () {
 	Route::get('/', [Landing::class, 'home'])->name('home');
 	Route::get('/events', [Landing::class, 'events'])->name('events');
 	Route::get('/about', [Landing::class, 'about'])->name('about');
