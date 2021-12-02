@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Landing;
 use App\Http\Controllers\Momo;
+use App\Http\Controllers\Jinja;
 
 use Inertia\Inertia;
 
@@ -23,13 +24,14 @@ Route::domain('go.localhost')->group(function () {
 });
 
 Route::domain('api.localhost')->group(function () {
-	Route::get('/', [Momo::class, 'home'])->name('jinja');
+	Route::get('/', [Jinja::class, 'home'])->name('jinja');
 });
 
 Route::domain('localhost')->group(function () {
 	Route::get('/', [Landing::class, 'home'])->name('home');
 	Route::get('/events', [Landing::class, 'events'])->name('events');
 	Route::get('/about', [Landing::class, 'about'])->name('about');
+	Route::get('/member', [Landing::class, 'member'])->name('member');
 	Route::get('/contact', [Landing::class, 'contact'])->name('contact');
 	Route::post('/contact', [Landing::class, 'sendContact'])->name('contact.send');
 

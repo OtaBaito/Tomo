@@ -79,10 +79,6 @@ class Landing extends Controller
 					 'description' => '~ 195'
 				 ],
 				 [
-					 'name' => 'Gameplay',
-					 'description' => '7'
-				 ],
-				 [
 					 'name' => 'Awards',
 					 'description' => '10'
 				 ],
@@ -90,10 +86,44 @@ class Landing extends Controller
 					 'name' => 'Avg. Win Rate',
 					 'description' => '~70%'
 				 ],
-				 [
-					 'name' => 'Play Hours',
-					 'description' => '7305+'
-				 ],
+			],
+			'members' => [
+				[
+					'id' => 1,
+					'name' => 'Armiko Sandi M.D.',
+					'href' => '#',
+					'imageSrc' => 'assets/mascot.png',
+					'imageAlt' => "Picture of Himself",
+					'division' => 'CC',
+					'role' => 'President',
+				],
+				[
+					'id' => 2,
+					'name' => 'Okabe Rintaro',
+					'href' => '#',
+					'imageSrc' => 'assets/mascot.png',
+					'imageAlt' => "Picture of Himself",
+					'division' => 'CC',
+					'role' => 'Secretary',
+				],
+				[
+					'id' => 3,
+					'name' => 'Walter Paul',
+					'href' => '#',
+					'imageSrc' => 'assets/mascot.png',
+					'imageAlt' => "Picture of Himself",
+					'division' => 'CC',
+					'role' => 'Treasurer',
+				],
+				[
+					'id' => 4,
+					'name' => 'Mary Sue',
+					'href' => '#',
+					'imageSrc' => 'assets/mascot.png',
+					'imageAlt' => "Picture of Himself",
+					'division' => 'CC',
+					'role' => 'Sufficient other role',
+				],
 			],
 		]);
     }
@@ -107,6 +137,17 @@ class Landing extends Controller
     public function Contact(Request $request)
     {
         return Inertia::render('Landing/Contact');
+    }
+
+	/**
+     * Show the contact tomodachi screen.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Inertia\Response
+     */
+    public function Member(Request $request)
+    {
+        return Inertia::render('Landing/Member');
     }
 
 	/**

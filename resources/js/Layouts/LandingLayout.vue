@@ -24,6 +24,9 @@
 							<nav-link :href="route('events')" :active="route().current('events')">
 								Events
 							</nav-link>
+							<nav-link :href="route('member')" :active="route().current('member')">
+								Member
+							</nav-link>
 							<nav-link :href="route('about')" :active="route().current('about')">
 								About
 							</nav-link>

@@ -21,6 +21,28 @@
 				<img src="https://images.unsplash.com/photo-1548003693-b55d51032288?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Gaming." class="bg-gray-100 rounded-lg object-cover object-top" style="width: 280px; height: 280px" />
 			</div>
 		</div>
+		<div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+			<h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Our team</h2>
+
+			<div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+				<div v-for="member in members" :key="member.id" class="group relative">
+					<div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+						<img :src="member.imageSrc" :alt="member.imageAlt" class="w-full h-full object-center object-cover lg:w-full lg:h-full" />
+					</div>
+					<div class="mt-4 flex justify-between">
+						<div>
+							<h3 class="text-sm text-gray-700">
+								<a :href="member.href">
+									<span aria-hidden="true" class="absolute inset-0" />
+									{{ member.name }}
+								</a>
+							</h3>
+							<p class="mt-1 text-sm text-gray-500">{{ member.role }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div>
 	</landing-layout>
 </template>
 
@@ -36,7 +58,8 @@ export default defineComponent({
 	},
 
 	props: {
-		features: Object
-	}
+		features: Object,
+		members: Object,
+	},
 })
 </script>
