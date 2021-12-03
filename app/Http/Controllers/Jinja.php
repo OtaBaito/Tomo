@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
+// use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class Jinja extends Controller
@@ -15,6 +15,7 @@ class Jinja extends Controller
      */
     public function home(Request $request)
     {
-        return Inertia::render('Momo');
+        // return Inertia::render('Momo');
+		return env('APP_DOMAIN');
     }
 }

@@ -38,12 +38,18 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::prefix('api')
+            Route::domain('api.' . env('APP_DOMAIN'))
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
+            Route::domain('go.' . env('APP_DOMAIN'))
+				->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/momo.php'));
+
+			Route::domain(config('domain'))
+				->middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Jinja;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::name('jinja.')->group(function () {
+	Route::get('/', [Jinja::class, 'home'])->name('jinja');
+
+	Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+		return $request->user();
+	});
 });
