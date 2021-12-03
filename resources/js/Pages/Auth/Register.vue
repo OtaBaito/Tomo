@@ -11,12 +11,20 @@
         <form @submit.prevent="submit">
             <div>
                 <jet-label for="name" value="Name" />
-                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
+                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required placeholder="Ferry Budiman" autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
                 <jet-label for="email" value="Email" />
-                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required />
+                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required placeholder="ferry.budiman@email.net" />
+            </div>
+
+			<div class="mt-4">
+                <jet-label for="phone" value="Phone" />
+                <jet-input id="phone" type="tel" class="mt-1 block w-full" v-model="form.phone" required placeholder="+62 812-6543-7890" @input="handleInput"
+			   @change="handleChange"
+               @paste="handlePaste"
+               :value="displayString" />
             </div>
 
             <div class="mt-4">
@@ -90,12 +98,39 @@
             }
         },
 
+		computed: {
+			phoneDisplayString() {
+				if (this.internalValueIsNotDefined) {
+					if (this.value) {
+						this.setInternalValue(this.value);
+					} else {
+						this.setToDefaultValue();
+					}
+				}
+			},
+			internalValueIsNotDefined() {
+				return this.internalValue == null || Number.isNaN(this.internalValue);
+			},
+		},
+
         methods: {
             submit() {
                 this.form.post(this.route('register'), {
                     onFinish: () => this.form.reset('password', 'password_confirmation'),
                 })
-            }
+            },
+			setToDefaultValue() {
+				let newVal = 0;
+				if (this.min != Number.NEGATIVE_INFINITY) {
+					newVal = this.min;
+				}
+				this.setInternalValue(newVal);
+			},
+			setInternalValue(number) {
+				this.internalValue = null;
+				this.internalValue = number;
+				this.$emit('input', this.internalValue);
+			},
         }
     })
 </script>

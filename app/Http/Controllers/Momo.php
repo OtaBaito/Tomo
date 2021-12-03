@@ -15,6 +15,35 @@ class Momo extends Controller
      */
     public function home(Request $request)
     {
-        return Inertia::render('Momo');
+        return Inertia::render('Momo', [
+			'categories' => [
+				[
+					'name' => 'Category Name',
+					'links' => [
+						[
+							'name' => 'Action Button',
+							'url' => '#',
+						],
+						[
+							'name' => 'Action Button',
+							'url' => '#',
+						],
+					]
+				],
+				[
+					'name' => 'Another Category',
+					'links' => [
+						[
+							'name' => 'More Action Button',
+							'url' => '#',
+						],
+						[
+							'name' => 'More Action Button',
+							'url' => '#',
+						],
+					]
+				],
+			]
+		]);
     }
 }
