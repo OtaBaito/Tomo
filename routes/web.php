@@ -19,15 +19,15 @@ use Inertia\Inertia;
 |
 */
 
-Route::domain('go.localhost')->group(function () {
+Route::domain('go.' . config('domain')->group(function () {
 	Route::get('/', [Momo::class, 'home'])->name('momolink');
 });
 
-Route::domain('api.localhost')->group(function () {
+Route::domain('api.' . config('domain')->group(function () {
 	Route::get('/', [Jinja::class, 'home'])->name('jinja');
 });
 
-Route::domain('localhost')->group(function () {
+Route::domain(config('domain')->group(function () {
 	Route::get('/', [Landing::class, 'home'])->name('home');
 	Route::get('/events', [Landing::class, 'events'])->name('events');
 	Route::get('/about', [Landing::class, 'about'])->name('about');
