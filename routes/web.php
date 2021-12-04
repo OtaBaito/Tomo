@@ -24,6 +24,10 @@ Route::get('/member', [Landing::class, 'member'])->name('member');
 Route::get('/contact', [Landing::class, 'contact'])->name('contact');
 Route::post('/contact', [Landing::class, 'sendContact'])->name('contact.send');
 
+// Route::get('/phone/verify', function () {
+//     return view('auth.verify-phone');
+// })->middleware('auth')->name('verification.notice');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 	return Inertia::render('Dashboard');
 })->name('dashboard');

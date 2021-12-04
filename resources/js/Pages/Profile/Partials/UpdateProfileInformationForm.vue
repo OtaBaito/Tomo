@@ -54,6 +54,12 @@
                 <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
                 <jet-input-error :message="form.errors.email" class="mt-2" />
             </div>
+
+			<div class="col-span-6 sm:col-span-4">
+                <jet-label for="phone" value="Phone" />
+                <jet-input @keypress="isNumber($event)" id="phone" type="tel" class="mt-1 block w-full" v-model="form.phone" required />
+				<jet-input-error :message="form.errors.phone" class="mt-2" />
+            </div>
         </template>
 
         <template #actions>

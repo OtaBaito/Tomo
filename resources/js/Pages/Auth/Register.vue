@@ -11,20 +11,17 @@
         <form @submit.prevent="submit">
             <div>
                 <jet-label for="name" value="Name" />
-                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required placeholder="Ferry Budiman" autofocus autocomplete="name" />
+                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
                 <jet-label for="email" value="Email" />
-                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required placeholder="ferry.budiman@email.net" />
+                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required />
             </div>
 
 			<div class="mt-4">
                 <jet-label for="phone" value="Phone" />
-                <jet-input id="phone" type="tel" class="mt-1 block w-full" v-model="form.phone" required placeholder="+62 812-6543-7890" @input="handleInput"
-			   @change="handleChange"
-               @paste="handlePaste"
-               :value="displayString" />
+                <jet-input @keypress="isNumber($event)" id="phone" type="tel" class="mt-1 block w-full" v-model="form.phone" required />
             </div>
 
             <div class="mt-4">
@@ -71,7 +68,7 @@
     import JetCheckbox from '@/Jetstream/Checkbox.vue'
     import JetLabel from '@/Jetstream/Label.vue'
     import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
-    import { Head, Link } from '@inertiajs/inertia-vue3';
+    import { Head, Link } from '@inertiajs/inertia-vue3'
 
     export default defineComponent({
         components: {
@@ -94,24 +91,9 @@
                     password: '',
                     password_confirmation: '',
                     terms: false,
-                })
+                }),
             }
         },
-
-		computed: {
-			phoneDisplayString() {
-				if (this.internalValueIsNotDefined) {
-					if (this.value) {
-						this.setInternalValue(this.value);
-					} else {
-						this.setToDefaultValue();
-					}
-				}
-			},
-			internalValueIsNotDefined() {
-				return this.internalValue == null || Number.isNaN(this.internalValue);
-			},
-		},
 
         methods: {
             submit() {
@@ -119,18 +101,17 @@
                     onFinish: () => this.form.reset('password', 'password_confirmation'),
                 })
             },
-			setToDefaultValue() {
-				let newVal = 0;
-				if (this.min != Number.NEGATIVE_INFINITY) {
-					newVal = this.min;
+
+			isNumber(v) {
+				v = (v) ? v : window.event
+				var charCode = (v.which) ? v.which : v.keyCode
+				
+				if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
+					v.preventDefault()
+				} else {
+					return true
 				}
-				this.setInternalValue(newVal);
-			},
-			setInternalValue(number) {
-				this.internalValue = null;
-				this.internalValue = number;
-				this.$emit('input', this.internalValue);
-			},
+			}
         }
     })
 </script>
