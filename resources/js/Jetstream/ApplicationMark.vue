@@ -1,3 +1,3 @@
 <template>
-    <img src="/assets/logo.png" class="block h-14 w-14" alt="Tomodachi Emblem">
+    <img :src="$page.props.app.url + '/assets/logo.png'"  alt="Tomodachi Emblem" class="block h-14 w-14">
 </template>

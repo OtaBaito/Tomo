@@ -2,9 +2,16 @@
 
 namespace App\Providers;
 
+use App\Actions\Jetstream\AddTeamMember;
+use App\Actions\Jetstream\CreateTeam;
+use App\Actions\Jetstream\DeleteTeam;
 use App\Actions\Jetstream\DeleteUser;
+use App\Actions\Jetstream\InviteTeamMember;
+use App\Actions\Jetstream\RemoveTeamMember;
+use App\Actions\Jetstream\UpdateTeamName;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
+use Http\Middleware\Tomodachi;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
@@ -27,11 +34,19 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         $this->configurePermissions();
 
+        Jetstream::createTeamsUsing(CreateTeam::class);
+        Jetstream::updateTeamNamesUsing(UpdateTeamName::class);
+        Jetstream::addTeamMembersUsing(AddTeamMember::class);
+        Jetstream::inviteTeamMembersUsing(InviteTeamMember::class);
+        Jetstream::removeTeamMembersUsing(RemoveTeamMember::class);
+        Jetstream::deleteTeamsUsing(DeleteTeam::class);
         Jetstream::deleteUsersUsing(DeleteUser::class);
+
+		// $this->appendMiddlewareToGroup('web', Tomodachi::class);
     }
 
     /**
-     * Configure the permissions that are available within the application.
+     * Configure the roles and permissions that are available within the application.
      *
      * @return void
      */
@@ -39,22 +54,24 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         Jetstream::defaultApiTokenPermissions(['read']);
 
-		// Jetstream::role('admin', 'Administrator', [
-		// 	'server:create',
-		// 	'server:read',
-		// 	'server:update',
-		// 	'server:delete',
-		// ])->description('Administrator users can perform any action.');
-		//
-		// Jetstream::role('support', 'Support Specialist', [
-		// 	'server:read',
-		// ])->description('Support specialists can read server information.');
+		Jetstream::role('admin', 'Administrator', [
+			'server:create',
+			'server:read',
+			'server:update',
+			'server:delete',
+		])->description('Administrator users can perform any action.');
 
-        Jetstream::permissions([
-            'create',
-            'read',
-            'update',
-            'delete',
-        ]);
+		Jetstream::role('support', 'Support Specialist', [
+			'server:read',
+			'server:update',
+		])->description('Support specialists can read server information.');
+
+		Jetstream::role('premium', 'Premium Membership', [
+			'read',
+		])->description('Paid membership and else.');
+
+		Jetstream::role('member', 'Member', [
+			'read',
+		])->description('Verified Member.');
     }
 }

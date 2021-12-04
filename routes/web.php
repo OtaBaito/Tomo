@@ -1,9 +1,8 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Landing;
-
 use Inertia\Inertia;
 
 /*
@@ -29,5 +28,5 @@ Route::post('/contact', [Landing::class, 'sendContact'])->name('contact.send');
 // })->middleware('auth')->name('verification.notice');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-	return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard');
 })->name('dashboard');

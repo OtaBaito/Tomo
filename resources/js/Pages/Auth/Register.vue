@@ -68,7 +68,7 @@
     import JetCheckbox from '@/Jetstream/Checkbox.vue'
     import JetLabel from '@/Jetstream/Label.vue'
     import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
-    import { Head, Link } from '@inertiajs/inertia-vue3'
+    import { Head, Link } from '@inertiajs/inertia-vue3';
 
     export default defineComponent({
         components: {
@@ -88,10 +88,11 @@
                 form: this.$inertia.form({
                     name: '',
                     email: '',
+                    phone: '',
                     password: '',
                     password_confirmation: '',
                     terms: false,
-                }),
+                })
             }
         },
 
@@ -105,7 +106,7 @@
 			isNumber(v) {
 				v = (v) ? v : window.event
 				var charCode = (v.which) ? v.which : v.keyCode
-				
+
 				if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
 					v.preventDefault()
 				} else {

@@ -55,6 +55,7 @@
                 <jet-input-error :message="form.errors.email" class="mt-2" />
             </div>
 
+			<!-- Phone -->
 			<div class="col-span-6 sm:col-span-4">
                 <jet-label for="phone" value="Phone" />
                 <jet-input @keypress="isNumber($event)" id="phone" type="tel" class="mt-1 block w-full" v-model="form.phone" required />
@@ -103,6 +104,7 @@
                     _method: 'PUT',
                     name: this.user.name,
                     email: this.user.email,
+                    phone: this.user.phone,
                     photo: null,
                 }),
 
@@ -156,6 +158,17 @@
                     this.$refs.photo.value = null;
                 }
             },
+
+			isNumber(v) {
+				v = (v) ? v : window.event
+				var charCode = (v.which) ? v.which : v.keyCode
+
+				if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
+					v.preventDefault()
+				} else {
+					return true
+				}
+			}
         },
     })
 </script>

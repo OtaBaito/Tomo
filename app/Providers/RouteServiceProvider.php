@@ -48,7 +48,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/momo.php'));
 
-			Route::domain(config('domain'))
+			Route::domain(env('APP_DOMAIN'))
 				->middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
