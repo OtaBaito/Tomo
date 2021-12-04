@@ -13,6 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+		DB::table('teams')->insert([
+            'user_id' => 1,
+            'name' => 'Tomodachi',
+            'personal_team' => 0,
+        ]);
+
         // \App\Models\User::factory(10)->create();
     }
 }
