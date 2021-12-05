@@ -52,8 +52,8 @@ class CreateNewUser implements CreatesNewUsers
     {
 		$team = Team::first();
 
-		$user->teams()->attach($team);
-		
+		$user->teams()->attach($team, ['role' => 'member']);
+
 		$user->switchTeam($team);
     }
 }

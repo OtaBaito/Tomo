@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Team;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-		DB::table('teams')->insert([
+		Team::create([
             'user_id' => 1,
             'name' => 'Tomodachi',
             'personal_team' => 0,
