@@ -1,8 +1,6 @@
 <template>
     <div>
         <div v-if="userPermissions.canAddTeamMembers">
-            <jet-section-border />
-
             <!-- Add Team Member -->
             <jet-form-section @submitted="addTeamMember">
                 <template #title>

@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\VerifyPhone;
+use Illuminate\Notifications\Notifiable;
 
 class Landing extends Controller
 {
+	use Notifiable;
+
 	/**
      * Show the home landing screen.
      *
@@ -16,10 +20,7 @@ class Landing extends Controller
      */
     public function home(Request $request)
     {
-        return Inertia::render('Landing/Home', [
-			// 'canLogin' => Route::has('login'),
-			// 'canRegister' => Route::has('register'),
-		]);
+        return Inertia::render('Landing/Home');
     }
 
 	/**
@@ -159,5 +160,22 @@ class Landing extends Controller
     public function SendContact(Request $request)
     {
         return Inertia::render('Landing/Contact');
+    }
+
+	/**
+     * Show the contact tomodachi screen.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Inertia\Response
+     */
+    public function Phone(Request $request)
+    {
+		if ($request->user()) {
+			return $request->user()->notify(new VerifyPhone());
+		} else {
+			return 'NOt aUthentiCateD';
+		}
+		// return Notification::sendNow('', new VerifyPhone());
+        // return Inertia::render('Landing/Contact');
     }
 }

@@ -21,7 +21,12 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'phone' => ['required', 'integer', 'max:99999999999999', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'nick' => ['nullable', 'string', 'max:255'],
+            'gender' => ['nullable', 'integer', 'max:2'],
+            'location' => ['nullable', 'integer', 'max:64'],
+            'birthday' => ['nullable', 'date'],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -35,6 +40,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'phone' => $input['phone'],
+                'nickname' => $input['nick'],
+                'gender' => $input['gender'],
+                'location' => $input['location'],
+                'birthday' => $input['birthday'],
             ])->save();
         }
     }

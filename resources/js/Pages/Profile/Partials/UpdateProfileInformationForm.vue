@@ -43,7 +43,7 @@
 
             <!-- Name -->
             <div class="col-span-6 sm:col-span-4">
-                <jet-label for="name" value="Name" />
+                <jet-label for="name" value="Full Name" />
                 <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
                 <jet-input-error :message="form.errors.name" class="mt-2" />
             </div>
@@ -55,11 +55,39 @@
                 <jet-input-error :message="form.errors.email" class="mt-2" />
             </div>
 
+			<!-- Gender -->
+			<div class="col-span-6 sm:col-span-2">
+                <jet-label for="gender" value="Gender" />
+				<v-select id="gender" v-model="form.gender" :reduce="genders => genders.id" class="mt-1 block w-full border-gray-300 focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md shadow-sm text-base" :options="genders" :clearable="false"></v-select>
+				<jet-input-error :message="form.errors.gender" class="mt-2" />
+            </div>
+
 			<!-- Phone -->
 			<div class="col-span-6 sm:col-span-4">
                 <jet-label for="phone" value="Phone" />
                 <jet-input @keypress="isNumber($event)" id="phone" type="tel" class="mt-1 block w-full" v-model="form.phone" required />
 				<jet-input-error :message="form.errors.phone" class="mt-2" />
+            </div>
+
+			<!-- Location -->
+			<div class="col-span-6 sm:col-span-2">
+                <jet-label for="location" value="Location" />
+				<v-select id="location" v-model="form.location" :reduce="locations => locations.id" class="mt-1 block w-full border-gray-300 focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md shadow-sm text-base" :options="locations" :clearable="false"></v-select>
+				<jet-input-error :message="form.errors.location" class="mt-2" />
+            </div>
+
+			<!-- Nickname -->
+			<div class="col-span-6 sm:col-span-4">
+                <jet-label for="nick" value="Nickname" />
+                <jet-input id="nick" type="text" class="mt-1 block w-full" v-model="form.nick" />
+				<jet-input-error :message="form.errors.nick" class="mt-2" />
+            </div>
+
+			<!-- Birthday -->
+			<div class="col-span-6 sm:col-span-2">
+                <jet-label for="birthday" value="Birthdate" />
+                <jet-input id="birthday" type="date" class="mt-1 block w-full" v-model="form.birthday" />
+				<jet-input-error :message="form.errors.birthday" class="mt-2" />
             </div>
         </template>
 
@@ -84,6 +112,7 @@
     import JetLabel from '@/Jetstream/Label.vue'
     import JetActionMessage from '@/Jetstream/ActionMessage.vue'
     import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue'
+	import vSelect from 'vue-select'
 
     export default defineComponent({
         components: {
@@ -94,9 +123,17 @@
             JetInputError,
             JetLabel,
             JetSecondaryButton,
+			vSelect,
         },
 
-        props: ['user'],
+        props: {
+			'user': {
+				type: Object,
+			},
+			'locations': {
+				type: Object,
+			},
+		},
 
         data() {
             return {
@@ -105,10 +142,29 @@
                     name: this.user.name,
                     email: this.user.email,
                     phone: this.user.phone,
+					nick: this.user.nickname,
+					gender: this.user.gender,
+					birthday: this.user.birthday,
+					location: this.user.location,
                     photo: null,
                 }),
 
                 photoPreview: null,
+
+				genders: [
+					{
+						id: 0,
+						label: 'Male'
+					},
+					{
+						id: 1,
+						label: 'Female'
+					},
+					{
+						id: 2,
+						label: 'Non-binary'
+					},
+				],
             }
         },
 

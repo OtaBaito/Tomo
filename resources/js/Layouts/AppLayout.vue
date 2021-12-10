@@ -22,6 +22,10 @@
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </jet-nav-link>
+
+								<jet-nav-link :href="route('admin.division')" :active="route().current('admin.division')" v-if="$page.props.app.hasPermission">
+                                    Games Division
+                                </jet-nav-link>
                             </div>
                         </div>
 

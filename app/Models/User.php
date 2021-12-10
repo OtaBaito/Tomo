@@ -20,6 +20,26 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+	/**
+     * Get the default profile photo URL if no profile photo has been uploaded.
+     *
+     * @return string
+     */
+    protected function defaultProfilePhotoUrl()
+    {
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=DC2626&background=FEE2E2';
+    }
+
+	/**
+ 	* Route notifications for the Slack channel.
+ 	*
+ 	* @var \Closure|null
+ 	*/
+ 	public function routeNotificationForWebhook()
+ 	{
+ 		return 'https://enumgu1dm2utiej.m.pipedream.net';
+ 	}
+
     /**
      * The attributes that are mass assignable.
      *
@@ -27,6 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name', 'email', 'phone', 'password',
+		'nickname', 'gender', 'birthday', 'location',
     ];
 
     /**

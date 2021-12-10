@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landing;
+use App\Http\Controllers\Admin;
 use Inertia\Inertia;
 
 /*
@@ -23,9 +24,14 @@ Route::get('/member', [Landing::class, 'member'])->name('member');
 Route::get('/contact', [Landing::class, 'contact'])->name('contact');
 Route::post('/contact', [Landing::class, 'sendContact'])->name('contact.send');
 
-// Route::get('/phone/verify', function () {
-//     return view('auth.verify-phone');
-// })->middleware('auth')->name('verification.notice');
+Route::get('/phone/verify', [Landing::class, 'phone'])->middleware('auth')->name('phone.notice');
+Route::get('/phone/verify/a', [Landing::class, 'phone'])->middleware('auth')->name('phone.verify');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+	Route::name('admin.')->group(function () {
+		Route::get('/division', [Admin::class, 'division'])->name('division');
+	});
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');

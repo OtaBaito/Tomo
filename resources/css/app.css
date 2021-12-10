@@ -1,3 +1,26 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@import 'vue-select/dist/vue-select.css';
+
+.vs__search::placeholder,
+.vs__dropdown-toggle {
+	@apply py-2 rounded-md border-gray-300;
+}
+
+.vs__dropdown-menu {
+	@apply rounded-b-md border-gray-300;
+}
+
+.vs__actions {
+	padding: 0 6px 0 3px;
+}
+
+.vs__selected {
+	margin: 0 2px 0;
+}
+
+.vs__search, .vs__search:focus {
+	margin: 0;
+}
