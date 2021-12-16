@@ -23,7 +23,7 @@
                                     Dashboard
                                 </jet-nav-link>
 
-								<jet-nav-link :href="route('admin.division')" :active="route().current('admin.division')" v-if="$page.props.app.hasPermission">
+								<jet-nav-link :href="route('admin.division.list')" :active="route().current('admin.division.list')" v-if="$page.props.app.hasPermission">
                                     Games Division
                                 </jet-nav-link>
                             </div>
@@ -112,6 +112,10 @@
 
                                         <jet-dropdown-link :href="route('profile.show')">
                                             Profile
+                                        </jet-dropdown-link>
+
+										<jet-dropdown-link :href="route('admin.division.link')">
+                                            Game Division
                                         </jet-dropdown-link>
 
                                         <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">

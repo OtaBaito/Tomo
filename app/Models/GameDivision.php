@@ -4,17 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Actions\Tomodachi\HasCoverPhoto;
 
 class GameDivision extends Model
 {
     use HasFactory;
+	use HasCoverPhoto;
 
 	/**
-	 * Get the invoice's product.
+	 * Get the game's players.
 	 */
-	public function player()
+	public function players()
 	{
-		return $this->hasMany(Gameplay::class, 'division');
+		return $this->hasMany(Gameplay::class, 'game_divisions_id');
+	}
+
+	/**
+	 * Get the game's leader.
+	 */
+	public function lead()
+	{
+		return $this->hasOne(User::class, 'id', 'leader');
 	}
 
 	/**
@@ -26,5 +36,15 @@ class GameDivision extends Model
         'name',
         'platform',
         'publisher',
+        'leader',
+    ];
+
+	/**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+		'cover_photo_url',
     ];
 }

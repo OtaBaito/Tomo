@@ -40,6 +40,14 @@ class User extends Authenticatable implements MustVerifyEmail
  		return 'https://enumgu1dm2utiej.m.pipedream.net';
  	}
 
+	/**
+	 * Get the player's games.
+	 */
+	public function games()
+	{
+		return $this->hasMany(Gameplay::class, 'user_id');
+	}
+
     /**
      * The attributes that are mass assignable.
      *

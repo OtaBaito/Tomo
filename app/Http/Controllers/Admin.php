@@ -15,6 +15,8 @@ class Admin extends Controller
      */
     public function division(Request $request)
     {
-        return Inertia::render('Admin/Division');
+        return Inertia::render('Admin/Divisions/Show', [
+			'divisions' => []
+		]);
     }
 }

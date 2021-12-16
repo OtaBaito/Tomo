@@ -143,9 +143,9 @@
                     email: this.user.email,
                     phone: this.user.phone,
 					nick: this.user.nickname,
-					gender: this.user.gender,
+					gender: Number.parseInt(this.user.gender),
 					birthday: this.user.birthday,
-					location: this.user.location,
+					location: Number.parseInt(this.user.location),
                     photo: null,
                 }),
 

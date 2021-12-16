@@ -5,6 +5,16 @@
 @import 'vue-select/dist/vue-select.css';
 
 .vs__search::placeholder,
+.vs__dropdown-option--highlight,
+.vs__dropdown-option {
+	@apply text-gray-700;
+}
+
+.vs__dropdown-option--highlight {
+	@apply bg-gray-100;
+}
+
+.vs__search::placeholder,
 .vs__dropdown-toggle {
 	@apply py-2 rounded-md border-gray-300;
 }

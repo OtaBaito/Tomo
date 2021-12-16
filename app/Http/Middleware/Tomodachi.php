@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Laravel\Jetstream\HasTeams;
 use Illuminate\Support\Facades\Gate;
+use App\Models\GameDivision;
 
 class Tomodachi
 {

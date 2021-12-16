@@ -18,12 +18,20 @@ class Gameplay extends Model
 	}
 
 	/**
+	 * Get the player.
+	 */
+	public function division()
+	{
+		return $this->belongsTo(GameDivision::class, 'game_divisions_id');
+	}
+
+	/**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
     protected $fillable = [
-        'division_id',
+        'game_divisions_id',
         'user_id',
     ];
 }

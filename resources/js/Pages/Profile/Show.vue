@@ -14,12 +14,6 @@
                     <jet-section-border />
                 </div>
 
-				<div v-if="$page.props.jetstream.canUpdateProfileInformation">
-                    <update-game-form :user="$page.props.user" class="mt-10 sm:mt-0" />
-
-                    <jet-section-border />
-                </div>
-
                 <div v-if="$page.props.jetstream.canUpdatePassword">
                     <update-password-form class="mt-10 sm:mt-0" />
 
@@ -53,7 +47,7 @@
     import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue'
     import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue'
     import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue'
-    import UpdateGameForm from '@/Pages/Profile/Partials/UpdateGameForm.vue'
+	import LocationData from '@/Assets/Strings/City.json'
 
     export default defineComponent({
         props: ['sessions'],
@@ -66,29 +60,11 @@
             TwoFactorAuthenticationForm,
             UpdatePasswordForm,
             UpdateProfileInformationForm,
-            UpdateGameForm,
         },
 
 		data() {
 			return {
-				locations: [
-					{
-						id: 0,
-						label: 'Jakarta'
-					},
-					{
-						id: 1,
-						label: 'Surabaya, Jawa Timur'
-					},
-					{
-						id: 2,
-						label: 'Bandung, Jawa Barat'
-					},
-					{
-						id: 3,
-						label: 'Depok, Jawa Barat'
-					},
-				],
+				locations: LocationData,
 			}
 		}
     })

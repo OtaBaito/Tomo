@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Landing;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\Division;
+use App\Http\Controllers\LinkDivision;
 use Inertia\Inertia;
 
 /*
@@ -29,7 +31,18 @@ Route::get('/phone/verify/a', [Landing::class, 'phone'])->middleware('auth')->na
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 	Route::name('admin.')->group(function () {
-		Route::get('/division', [Admin::class, 'division'])->name('division');
+		Route::middleware(['admin'])->group(function () {
+			Route::get('/division', [Division::class, 'home'])->name('division.list');
+			Route::get('/division/create', [Division::class, 'createView'])->name('division.add');
+			Route::get('/division/edit/{id}', [Division::class, 'editView'])->name('division.edit');
+			Route::put('/division/edit/{id}', [Division::class, 'update'])->name('division.edit');
+			Route::delete('/division/delete/{id}', [Division::class, 'destroy'])->name('division.destroy');
+			Route::post('/division/create', [Division::class, 'create'])->name('division.add');
+		});
+
+		Route::get('/division/link', [LinkDivision::class, 'show'])->name('division.link');
+		Route::post('/division/link', [LinkDivision::class, 'linked'])->name('division.link');
+		Route::delete('/division/unlink/{id}', [LinkDivision::class, 'destroy'])->name('division.unlink');
 	});
 });
 
