@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\GameDivision;
+use App\Models\DivisionRequirement;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -18,6 +19,19 @@ class Division extends Controller
 		'platform' => ['required', 'integer', 'max:4'],
 		'leader' => ['required', 'integer'],
 		'photo' => ['max:8192', 'mimes:webp,svg+xml,png,jpeg,gif'],
+	];
+
+	private $requirement = [
+		'name' => ['required', 'max:100'],
+		'publisher' => ['required', 'max:100'],
+		'platform' => ['required', 'integer', 'max:4'],
+		'leader' => ['required', 'integer'],
+		'photo' => ['max:8192', 'mimes:webp,svg+xml,png,jpeg,gif'],
+
+		'title' => ['required', 'max:100'],
+		'description' => ['max:300'],
+		'attachment' => ['required', 'integer', 'max:4'],
+		'mandate' => ['required', 'integer'],
 	];
 
 	/**
@@ -82,6 +96,9 @@ class Division extends Controller
      */
     public function editView(Request $request, $id)
     {
+		$dvs = GameDivision::find($id);
+		$dvs->load('requirements');
+
         return Inertia::render('Admin/Divisions/Edit', [
 			'leaders' => User::all()->transform(function ($user) {
 				if ($user->hasTeamPermission($user->currentTeam, 'server:update')) {
@@ -91,7 +108,7 @@ class Division extends Controller
 					];
 				}
 			}),
-			'division' => GameDivision::find($id)
+			'division' => $dvs,
 		]);
     }
 
@@ -122,6 +139,46 @@ class Division extends Controller
     }
 
 	/**
+     * Add new division requirement.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Inertia\Response
+     */
+    public function require(Request $request, $id)
+    {
+		$validator = Validator::make($request->all(), $this->requirement);
+
+		$division = new DivisionRequirement;
+
+		$division->game_division_id = $id;
+		$division->title = $validator->validated()['title'];
+		$division->description = $validator->validated()['description'];
+		$division->attachment = $validator->validated()['attachment'];
+		$division->mandate = $validator->validated()['mandate'];
+
+		$division->save();
+
+		return Redirect::route('admin.division.edit', $id);
+    }
+
+	/**
+     * Add new division requirement.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Inertia\Response
+     */
+    public function unrequire(Request $request, $id)
+    {
+		$requirement = DivisionRequirement::find($id);
+
+		$callback = $requirement->game_division_id;
+
+		$requirement->delete();
+
+		return Redirect::route('admin.division.edit', $callback);
+    }
+
+	/**
      * Update divisions.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -144,6 +201,9 @@ class Division extends Controller
 
 		$division->save();
 
+		$dvs = GameDivision::find($id);
+		$dvs->load('requirements');
+
 		return Inertia::render('Admin/Divisions/Edit', [
 			'leaders' => User::all()->transform(function ($user) {
 				if ($user->hasTeamPermission($user->currentTeam, 'server:update')) {
@@ -153,7 +213,7 @@ class Division extends Controller
 					];
 				}
 			}),
-			'division' => GameDivision::find($id)
+			'division' => $dvs,
 		]);
     }
 

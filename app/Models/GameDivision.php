@@ -20,6 +20,14 @@ class GameDivision extends Model
 	}
 
 	/**
+	 * Get the game's players.
+	 */
+	public function requirements()
+	{
+		return $this->hasMany(DivisionRequirement::class, 'game_division_id');
+	}
+
+	/**
 	 * Get the game's leader.
 	 */
 	public function lead()

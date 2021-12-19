@@ -16,6 +16,12 @@
 
 					<jet-section-border />
 
+					<requirements :division="division" />
+
+					<requirements-table :division="division.requirements" />
+
+					<jet-section-border />
+
 					<delete-division-form :division="division" />
                 </div>
             </div>
@@ -28,6 +34,8 @@
     import AppLayout from '@/Layouts/AppLayout.vue'
     import DivisionForm from '@/Pages/Admin/Divisions/Partials/Edit/Division.vue'
     import DeleteDivisionForm from '@/Pages/Admin/Divisions/Partials/Edit/DeleteDivisionForm.vue'
+    import Requirements from '@/Pages/Admin/Divisions/Partials/Edit/Requirements.vue'
+    import RequirementsTable from '@/Pages/Admin/Divisions/Partials/Edit/RequirementsTable.vue'
 	import JetSectionBorder from '@/Jetstream/SectionBorder.vue'
 	import { Link } from '@inertiajs/inertia-vue3'
 
@@ -37,6 +45,8 @@
             DivisionForm,
 			JetSectionBorder,
 			DeleteDivisionForm,
+			Requirements,
+			RequirementsTable,
 			Link,
         },
 		props: {

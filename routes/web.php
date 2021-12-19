@@ -36,6 +36,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 			Route::get('/division/create', [Division::class, 'createView'])->name('division.add');
 			Route::get('/division/edit/{id}', [Division::class, 'editView'])->name('division.edit');
 			Route::put('/division/edit/{id}', [Division::class, 'update'])->name('division.edit');
+			Route::put('/division/require/{id}', [Division::class, 'require'])->name('division.requirement');
+			Route::delete('/division/unrequire/{id}', [Division::class, 'unrequire'])->name('division.unrequire');
 			Route::delete('/division/delete/{id}', [Division::class, 'destroy'])->name('division.destroy');
 			Route::post('/division/create', [Division::class, 'create'])->name('division.add');
 		});
