@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-		"test": "npm prod",
+		"test": "npm run prod",
         "dev": "npm run development",
         "development": "mix",
         "watch": "mix watch",
