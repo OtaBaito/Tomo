@@ -1234,6 +1234,9 @@ select {
 .w-1\/2 {
   width: 50%;
 }
+.w-px {
+  width: 1px;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1420,6 +1423,11 @@ select {
   --tw-space-x-reverse: 0;
   margin-right: calc(1.5rem * var(--tw-space-x-reverse));
   margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .divide-y > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-y-reverse: 0;
@@ -2550,6 +2558,10 @@ select {
     margin-top: 2rem;
   }
 
+  .sm\:mb-4 {
+    margin-bottom: 1rem;
+  }
+
   .sm\:block {
     display: block;
   }
@@ -2582,6 +2594,14 @@ select {
     height: 0.75rem;
   }
 
+  .sm\:h-px {
+    height: 1px;
+  }
+
+  .sm\:h-auto {
+    height: auto;
+  }
+
   .sm\:w-10 {
     width: 2.5rem;
   }
@@ -2596,6 +2616,10 @@ select {
 
   .sm\:w-3 {
     width: 0.75rem;
+  }
+
+  .sm\:w-80 {
+    width: 20rem;
   }
 
   .sm\:max-w-md {
@@ -2815,6 +2839,10 @@ select {
     margin-top: 1.25rem;
   }
 
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:grid {
     display: grid;
   }
@@ -2943,6 +2971,10 @@ select {
 
   .lg\:mt-0 {
     margin-top: 0px;
+  }
+
+  .lg\:flex {
+    display: flex;
   }
 
   .lg\:grid {

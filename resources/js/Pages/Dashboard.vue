@@ -1,16 +1,11 @@
 <template>
     <app-layout title="Dashboard">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+			<tomo-steps v-if="stepsdata.length > 0" :steps="stepsdata" />
+			<h2 v-else class="font-semibold text-xl text-gray-800 leading-tight">
                 Dashboard
             </h2>
         </template>
-
-		<div class="w-full">
-			<div class="bg-white sm:rounded-lg my-4 shadow border-y-2 border-gray-50">
-				<tomo-steps :steps="stepsdata" />
-			</div>
-		</div>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -48,6 +43,18 @@
 						id: 2,
 						done: false,
 						name: 'Join Division',
+						link: '#',
+					},
+					{
+						id: 3,
+						done: false,
+						name: 'Complete Requirements',
+						link: '#',
+					},
+					{
+						id: 4,
+						done: false,
+						name: 'Let\'s Play',
 						link: '#',
 					},
 				],

@@ -6,7 +6,7 @@
             </div>
 
             <div class="mt-8 text-2xl">
-                Welcome to your Jetstream application!
+                Welcome to &#x53cb;&#x30fb;Tomodachi Clan!
             </div>
 
             <div class="mt-6 text-gray-500">
