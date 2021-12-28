@@ -6,6 +6,7 @@ use App\Http\Controllers\Landing;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\Division;
 use App\Http\Controllers\LinkDivision;
+use App\Http\Controllers\Uploader;
 use Inertia\Inertia;
 
 /*
@@ -42,9 +43,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 			Route::post('/division/create', [Division::class, 'create'])->name('division.add');
 		});
 
+		Route::get('/division/requirements', [Division::class, 'requirementsView'])->name('division.fill');
+
 		Route::get('/division/link', [LinkDivision::class, 'show'])->name('division.link');
 		Route::post('/division/link', [LinkDivision::class, 'linked'])->name('division.link');
 		Route::delete('/division/unlink/{id}', [LinkDivision::class, 'destroy'])->name('division.unlink');
+	});
+
+	Route::name('attachment.')->group(function () {
+		Route::get('/upload', [Uploader::class, 'home'])->name('list');
+		Route::post('/upload', [Uploader::class, 'upload'])->name('upload');
 	});
 });
 

@@ -18,7 +18,7 @@ class CreateUserAttachmentsTable extends Migration
 			$table->foreignId('user_id');
 			$table->string('title')->nullable();
 			$table->string('description')->nullable();
-			$table->string('profile_photo_path', 2048);
+			$table->string('attachment_path', 2048);
             $table->timestamps();
         });
     }

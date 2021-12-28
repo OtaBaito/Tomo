@@ -26,6 +26,10 @@
 								<jet-nav-link :href="route('admin.division.list')" :active="route().current('admin.division.list')" v-if="$page.props.app.hasPermission">
                                     Games Division
                                 </jet-nav-link>
+
+								<jet-nav-link :href="route('attachment.list')" :active="route().current('attachment.list')" v-if="$page.props.app.hasPermission">
+                                    Attachment
+                                </jet-nav-link>
                             </div>
                         </div>
 
@@ -204,11 +208,11 @@
                                 <div class="border-t border-gray-200"></div>
 
                                 <!-- Team Switcher -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                <div class="block px-4 py-2 text-xs text-gray-400" v-if="$page.props.jetstream.canCreateTeams">
                                     Switch Teams
                                 </div>
 
-                                <template v-for="team in $page.props.user.all_teams" :key="team.id">
+                                <template v-for="team in $page.props.user.all_teams" :key="team.id" v-if="$page.props.jetstream.canCreateTeams">
                                     <form @submit.prevent="switchToTeam(team)">
                                         <jet-responsive-nav-link as="button">
                                             <div class="flex items-center">

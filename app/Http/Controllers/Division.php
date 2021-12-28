@@ -139,6 +139,46 @@ class Division extends Controller
     }
 
 	/**
+     * Show the division management landing screen.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Inertia\Response
+     */
+    public function requirementsView(Request $request)
+    {
+		$dvs = GameDivision::all();
+		// $dvs->load('requirements');
+
+        return Inertia::render('Admin/Divisions/Requirement', [
+			'divisions' => $dvs,
+		]);
+    }
+
+	/**
+     * Show the division management landing screen.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Inertia\Response
+     */
+    public function requirementView(Request $request, $id)
+    {
+		$dvs = GameDivision::find($id);
+		$dvs->load('requirements');
+
+        return Inertia::render('Admin/Divisions/Requirement', [
+			'leaders' => User::all()->transform(function ($user) {
+				if ($user->hasTeamPermission($user->currentTeam, 'server:update')) {
+					return [
+						'id' => $user->id,
+						'label' => $user->name,
+					];
+				}
+			}),
+			'division' => $dvs,
+		]);
+    }
+
+	/**
      * Add new division requirement.
      *
      * @param  \Illuminate\Http\Request  $request

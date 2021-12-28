@@ -41,6 +41,14 @@ class User extends Authenticatable implements MustVerifyEmail
  	}
 
 	/**
+	 * Get the player's attachments.
+	 */
+	public function attachments()
+	{
+		return $this->hasMany(UserAttachment::class, 'user_id');
+	}
+
+	/**
 	 * Get the player's games.
 	 */
 	public function games()
