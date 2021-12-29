@@ -57,8 +57,12 @@ class Handler extends ExceptionHandler
 		}
 
 		if ((env('APP_ENV') != 'local') && !env('APP_DEBUG')) {
-			if (in_array($response->status(), [500, 503, 404, 403, 419])) {
+			if (in_array($response->status(), [503, 404, 403, 419])) {
 				return Inertia::render('Error', ['status' => $response->status()])
+					->toResponse($request)
+					->setStatusCode($response->status());
+			} else if (in_array($response->status(), [500])) {
+				return Inertia::render('ServerError', ['status' => $response->status()])
 					->toResponse($request)
 					->setStatusCode($response->status());
 			}

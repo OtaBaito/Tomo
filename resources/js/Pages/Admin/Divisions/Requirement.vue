@@ -36,7 +36,24 @@
 
 							<div class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 								<div class="normal">
-									{ 0 / 4 } Requirements Fullfiled
+									<div class="flex items-center space-x-4">
+										<span class="bg-red-500 w-3 h-3 rounded-full -mx-1">
+											<CheckIcon class="text-white" />
+										</span>
+										<span>Profile Screenshot</span>
+									</div>
+									<div class="flex items-center space-x-4">
+										<span class="bg-red-500 w-1.5 h-1.5 rounded-full ring ring-red-200"></span>
+										<span>Score Screenshot</span>
+									</div>
+									<div class="flex items-center space-x-4">
+										<span class="bg-gray-200 w-1.5 h-1.5 rounded-full"></span>
+										<span>Win Rate Screenshot</span>
+									</div>
+									<div class="flex items-center space-x-4">
+										<span class="bg-gray-200 w-1.5 h-1.5 rounded-full"></span>
+										<span>Join Team</span>
+									</div>
 								</div>
 								<div class="fullfiled even this page would be auto hidden by system">
 									Requirements Fullfiled
@@ -55,9 +72,9 @@
 									</template>
 
 									<template #content>
-										<!-- Account Management -->
+										<!-- Division Management -->
 										<div class="block px-4 py-2 text-xs text-gray-400">
-											Manage Account
+											Manage {{ division.name }}
 										</div>
 
 										<jet-dropdown-link :href="route('profile.show')">
@@ -90,7 +107,7 @@
     import AppLayout from '@/Layouts/AppLayout.vue'
 	import JetSectionBorder from '@/Jetstream/SectionBorder.vue'
 	import { Link } from '@inertiajs/inertia-vue3'
-	import { PhotographIcon, DotsVerticalIcon } from '@heroicons/vue/solid'
+	import { PhotographIcon, DotsVerticalIcon, CheckIcon } from '@heroicons/vue/solid'
 	import PlatformBar from '@/Pages/Admin/Divisions/Partials/Read/PlatformBar.vue'
 	import JetDropdown from '@/Jetstream/Dropdown.vue'
     import JetDropdownLink from '@/Jetstream/DropdownLink.vue'
@@ -102,6 +119,7 @@
 			Link,
 			PhotographIcon,
 			DotsVerticalIcon,
+			CheckIcon,
 			PlatformBar,
 			JetDropdown,
 			JetDropdownLink,

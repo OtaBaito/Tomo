@@ -13,7 +13,7 @@
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
                                 <Link :href="route('home')">
-									<img src="/assets/logo.png" class="block h-36 w-36" alt="Tomodachi Emblem">
+									<img src="/assets/logo.webp" class="block h-36 w-36" alt="Tomodachi Emblem">
                                 </Link>
                             </div>
                         </div>
