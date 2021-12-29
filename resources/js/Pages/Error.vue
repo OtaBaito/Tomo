@@ -1,7 +1,7 @@
 <template>
 	<landing-layout :title="title">
 		<div class="flex flex-col justify-center items-center">
-			<img src="assets/surprised.png" class="block h-96 w-auto" alt="Otabyte Logo">
+			<img src="assets/surprised.webp" class="block h-96 w-auto" alt="Yui Surprised">
 
 			<div class="text-2xl font-decorative font-extrabold tracking-tight text-gray-900 sm:text-3xl">
 				{{ description }}
@@ -16,7 +16,7 @@
 			<!-- OtaByte Logo -->
 			<div class="flex-shrink-0 flex items-center">
 				<a href="https://otabyte.net/">
-					<img src="assets/otabyte.png" class="block h-14 w-auto" alt="Otabyte Logo">
+					<img src="assets/otabyte.webp" class="block h-14 w-auto" alt="Otabyte Logo">
 				</a>
 			</div>
 		</div>

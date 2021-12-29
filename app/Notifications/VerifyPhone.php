@@ -48,11 +48,13 @@ class VerifyPhone extends Notification
 				'payload' => [
 					'webhook' => [
 						'phone' => $notifiable->phone,
+						'url' => $verificationUrl,
 						'message' => 'Your Tomodachi registration verification code is: ' . $verificationUrl . ' - DO NOT SHARE THIS CODE TO ANYONE INCLUDING ANYBODY WHO CLAIMS FROM TOMODACHI.'
 					]
 				]
             ])
-            ->userAgent("Tomodachi-OtaByte-0x100");
+            ->userAgent("Tomodachi-OtaByte-0x100")
+			->header('authorization', "Basic YWhvdDBtb2Q0Y2g6MWJhYWVkMDI4ZTUyNDBlYzdiNTdhZDVkZTkxYzUyODZkZmVmNmMwNWJiNjVjNDE5ZWQ1NjUyZmE1MWY0NTM3ODYzMGRjZjljNzM3Y2I3MDI5YjM3YTFlZDc2OWQzZjAyOTMxZTEyM2UzN2MxNGQ4MTY5NmQ2NjkwNjUwMGUzM2Q=");
     }
 
     /**

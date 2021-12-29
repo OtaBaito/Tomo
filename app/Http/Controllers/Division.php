@@ -43,13 +43,15 @@ class Division extends Controller
     public function home(Request $request)
     {
         return Inertia::render('Admin/Divisions/Show', [
-			'leaders' => User::all()->transform(function ($user) {
+			'leaders' => User::all()->filter(function ($user) {
 				if ($user->hasTeamPermission($user->currentTeam, 'server:update')) {
-					return [
-						'id' => $user->id,
-						'label' => $user->name,
-					];
+					return $user;
 				}
+			})->transform(function ($user) {
+				return [
+					'id' => $user->id,
+					'label' => $user->name,
+				];
 			}),
 			'keyword' => $request->input('keyword'),
             'divisions' => GameDivision::where('name', 'like', '%' . $request->input('keyword') . '%')
@@ -77,13 +79,15 @@ class Division extends Controller
     public function createView(Request $request)
     {
         return Inertia::render('Admin/Divisions/Create', [
-			'leaders' => User::all()->transform(function ($user) {
+			'leaders' => User::all()->filter(function ($user) {
 				if ($user->hasTeamPermission($user->currentTeam, 'server:update')) {
-					return [
-						'id' => $user->id,
-						'label' => $user->name,
-					];
+					return $user;
 				}
+			})->transform(function ($user) {
+				return [
+					'id' => $user->id,
+					'label' => $user->name,
+				];
 			}),
 		]);
     }
@@ -100,13 +104,15 @@ class Division extends Controller
 		$dvs->load('requirements');
 
         return Inertia::render('Admin/Divisions/Edit', [
-			'leaders' => User::all()->transform(function ($user) {
+			'leaders' => User::all()->filter(function ($user) {
 				if ($user->hasTeamPermission($user->currentTeam, 'server:update')) {
-					return [
-						'id' => $user->id,
-						'label' => $user->name,
-					];
+					return $user;
 				}
+			})->transform(function ($user) {
+				return [
+					'id' => $user->id,
+					'label' => $user->name,
+				];
 			}),
 			'division' => $dvs,
 		]);
@@ -166,14 +172,6 @@ class Division extends Controller
 		$dvs->load('requirements');
 
         return Inertia::render('Admin/Divisions/Requirement', [
-			'leaders' => User::all()->transform(function ($user) {
-				if ($user->hasTeamPermission($user->currentTeam, 'server:update')) {
-					return [
-						'id' => $user->id,
-						'label' => $user->name,
-					];
-				}
-			}),
 			'division' => $dvs,
 		]);
     }
@@ -245,14 +243,6 @@ class Division extends Controller
 		$dvs->load('requirements');
 
 		return Inertia::render('Admin/Divisions/Edit', [
-			'leaders' => User::all()->transform(function ($user) {
-				if ($user->hasTeamPermission($user->currentTeam, 'server:update')) {
-					return [
-						'id' => $user->id,
-						'label' => $user->name,
-					];
-				}
-			}),
 			'division' => $dvs,
 		]);
     }

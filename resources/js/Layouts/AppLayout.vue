@@ -157,6 +157,14 @@
                         <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </jet-responsive-nav-link>
+
+						<jet-responsive-nav-link :href="route('admin.division.list')" :active="route().current('admin.division.list')" v-if="$page.props.app.hasPermission">
+							Games Division
+						</jet-responsive-nav-link>
+
+						<jet-responsive-nav-link :href="route('attachment.list')" :active="route().current('attachment.list')" v-if="$page.props.app.hasPermission">
+							Attachment
+						</jet-responsive-nav-link>
                     </div>
 
                     <!-- Responsive Settings Options -->
@@ -177,6 +185,10 @@
                                 Profile
                             </jet-responsive-nav-link>
 
+							<jet-responsive-nav-link :href="route('admin.division.link')" :active="route().current('admin.division.link')">
+								Game Division
+							</jet-responsive-nav-link>
+
                             <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
                                 API Tokens
                             </jet-responsive-nav-link>
@@ -189,7 +201,7 @@
                             </form>
 
                             <!-- Team Management -->
-                            <template v-if="$page.props.jetstream.hasTeamFeatures">
+                            <template v-if="$page.props.jetstream.hasTeamFeatures && $page.props.app.hasPermission">
                                 <div class="border-t border-gray-200"></div>
 
                                 <div class="block px-4 py-2 text-xs text-gray-400">
@@ -199,10 +211,6 @@
                                 <!-- Team Settings -->
                                 <jet-responsive-nav-link :href="route('teams.show', $page.props.user.current_team)" :active="route().current('teams.show')">
                                     Team Settings
-                                </jet-responsive-nav-link>
-
-                                <jet-responsive-nav-link :href="route('teams.create')" :active="route().current('teams.create')" v-if="$page.props.jetstream.canCreateTeams">
-                                    Create New Team
                                 </jet-responsive-nav-link>
 
                                 <div class="border-t border-gray-200"></div>

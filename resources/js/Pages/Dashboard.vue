@@ -1,7 +1,7 @@
 <template>
     <app-layout title="Dashboard">
         <template #header>
-			<tomo-steps v-if="stepsdata.length > 0" :steps="stepsdata" />
+			<tomo-steps v-if="(stepsdata.length > 0) && (!stepsdata[stepsdata.length - 1].done)" :steps="stepsdata" />
 			<h2 v-else class="font-semibold text-xl text-gray-800 leading-tight">
                 Dashboard
             </h2>

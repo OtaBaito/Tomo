@@ -37,7 +37,7 @@
 							<div class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 								<div class="normal">
 									<div class="flex items-center space-x-4">
-										<span class="bg-red-500 w-3 h-3 rounded-full -mx-1">
+										<span class="bg-red-500 w-3 h-3 rounded-full -mx-[3px] p-px">
 											<CheckIcon class="text-white" />
 										</span>
 										<span>Profile Screenshot</span>
@@ -62,35 +62,6 @@
 									No Requirements
 								</div>
 							</div>
-
-							<div>
-								<jet-dropdown align="right" width="48">
-									<template #trigger>
-										<div class="hover:bg-gray-100 p-2 rounded-lg">
-											<DotsVerticalIcon class="h-4 w-4 text-gray-500" />
-										</div>
-									</template>
-
-									<template #content>
-										<!-- Division Management -->
-										<div class="block px-4 py-2 text-xs text-gray-400">
-											Manage {{ division.name }}
-										</div>
-
-										<jet-dropdown-link :href="route('profile.show')">
-											Complete Requirements
-										</jet-dropdown-link>
-
-										<jet-dropdown-link :href="route('admin.division.link')">
-											Leave Division
-										</jet-dropdown-link>
-
-
-										<div class="border-t border-gray-100"></div>
-
-									</template>
-								</jet-dropdown>
-							</div>
 		                </div>
 		            </div>
 					<div v-else class="flex justify-center items-center text-gray-500">
@@ -109,8 +80,6 @@
 	import { Link } from '@inertiajs/inertia-vue3'
 	import { PhotographIcon, DotsVerticalIcon, CheckIcon } from '@heroicons/vue/solid'
 	import PlatformBar from '@/Pages/Admin/Divisions/Partials/Read/PlatformBar.vue'
-	import JetDropdown from '@/Jetstream/Dropdown.vue'
-    import JetDropdownLink from '@/Jetstream/DropdownLink.vue'
 
     export default defineComponent({
         components: {
@@ -121,8 +90,6 @@
 			DotsVerticalIcon,
 			CheckIcon,
 			PlatformBar,
-			JetDropdown,
-			JetDropdownLink,
         },
 		props: {
 			divisions: Object,
