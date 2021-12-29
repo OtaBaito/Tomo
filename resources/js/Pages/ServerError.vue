@@ -5,22 +5,6 @@
         <!-- <jet-banner /> -->
 
         <div class="min-h-screen bg-white">
-            <nav>
-                <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col items-center justify-center space-y-2 h-48">
-                        <div class="flex">
-                            <!-- Logo -->
-                            <div class="flex-shrink-0 flex items-center">
-                                <Link :href="route('home')">
-									<img src="/assets/logo.png" class="block h-36 w-36" alt="Tomodachi Emblem">
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
             <!-- Page Content -->
             <main>
 				<div class="flex flex-col justify-center items-center">

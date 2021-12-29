@@ -1,7 +1,7 @@
 <template>
 	<div class="bg-yellow-50 overflow-hidden sm:rounded-lg">
 		<div class="flex flex-col lg:flex-row-reverse h-full lg:h-96 justify-center">
-			<img src="assets/mascot.png" class="object-cover object-top mx-auto lg:mx-0 block h-auto w-96" alt="Tomodachi Mascot">
+			<img src="assets/mascot.webp" class="object-cover object-top mx-auto lg:mx-0 block h-auto w-96" alt="Tomodachi Mascot">
 			<div class="bg-gradient-to-t from-yellow-50 via-yellow-50 py-4 lg:py-0 h-full -mt-96 lg:mt-0 flex flex-col justify-center text-center lg:text-left">
 				<h1 class="font-decorative text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">Are you worthy player?</h1>
 				<p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
