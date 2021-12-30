@@ -1,6 +1,6 @@
 <template>
     <Link :href="'/'">
-        <img :src="$page.props.app.url + '/assets/webp.png'"  alt="Tomodachi Emblem" class="block h-36 w-36">
+        <img :src="$page.props.app.url + '/assets/logo.webp'"  alt="Tomodachi Emblem" class="block h-36 w-36">
     </Link>
 </template>
 

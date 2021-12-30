@@ -1,11 +1,10 @@
 <template>
     <app-layout title="Division">
         <template #header>
-            <div class="flex justify-between">
+            <div>
 				<h2 class="font-semibold text-xl text-gray-800 leading-tight">
 	                Upload Files
 	            </h2>
-				<Link :href="route('admin.division.list')" class="text-sm text-gray-500 hover:text-gray-600 duration-100 font-bold">Back</Link>
             </div>
         </template>
 
