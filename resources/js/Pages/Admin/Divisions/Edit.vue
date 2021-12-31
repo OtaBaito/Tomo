@@ -18,7 +18,7 @@
 
 					<requirements :division="division" />
 
-					<requirements-table :division="division.requirements" />
+					<requirements-table v-if="division.requirements.length > 0" :division="division.requirements" />
 
 					<jet-section-border />
 
