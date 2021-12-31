@@ -3,8 +3,8 @@
         <template #form>
 			<!-- Add Playing Game -->
 			<div class="col-span-6 sm:col-span-5" v-if="divisions.length > 0">
-				<v-select id="gamelink" v-model="form.gamelink" :reduce="divisions => divisions.id" class="mt-1 block w-full border-gray-300 focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md shadow-sm text-base" :options="divisions" :clearable="false"></v-select>
-				<jet-input-error :message="form.errors.gamelink" class="mt-2" />
+				<v-select id="game_divisions_id" v-model="form.game_divisions_id" :reduce="divisions => divisions.id" class="mt-1 block w-full border-gray-300 focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md shadow-sm text-base" :options="divisions" :clearable="false"></v-select>
+				<jet-input-error :message="form.errors.game_divisions_id" class="mt-2" />
 			</div>
 
 			<div class="col-span-6 sm:col-span-1 flex items-center justify-end" v-if="divisions.length > 0">
@@ -123,7 +123,7 @@
 
                 form: this.$inertia.form({
                     _method: 'POST',
-                    gamelink: (this.divisions.length > 0) ? this.divisions[0].id : null,
+                    game_divisions_id: (this.divisions.length > 0) ? this.divisions[0].id : null,
                 }),
 
 				unlink: this.$inertia.form({

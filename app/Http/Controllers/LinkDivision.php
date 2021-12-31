@@ -12,7 +12,7 @@ use App\Models\GameDivision;
 class LinkDivision extends Controller
 {
 	private $rules = [
-		'gamelink' => ['required', 'integer', 'unique:gameplay'],
+		'game_divisions_id' => ['required', 'integer', 'unique:gameplay'],
 	];
 
 	/**
@@ -64,7 +64,7 @@ class LinkDivision extends Controller
 
 		$division = new Gameplay;
 
-		$division->game_divisions_id = $validator->validated()['gamelink'];
+		$division->game_divisions_id = $validator->validated()['game_divisions_id'];
 		$division->user_id = $request->user()->id;
 
 		$division->save();
