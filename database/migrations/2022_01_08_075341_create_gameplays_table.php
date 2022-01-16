@@ -14,7 +14,7 @@ class CreateGameplaysTable extends Migration
     public function up()
     {
         Schema::create('gameplays', function (Blueprint $table) {
-            $table->id();
+			$table->id();
 			$table->foreignId('game_divisions_id');
             $table->foreignId('user_id');
             $table->timestamps();

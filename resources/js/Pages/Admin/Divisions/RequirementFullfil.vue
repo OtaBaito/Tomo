@@ -1,0 +1,59 @@
+<template>
+    <app-layout title="Divisions">
+        <template #header>
+			<div class="flex justify-between">
+				<h2 class="font-semibold text-xl text-gray-800 leading-tight">
+	                Fullfil {{ gamelink.division.name }} Requirement
+	            </h2>
+				<Link :href="route('admin.division.fill')" class="text-sm text-gray-500 hover:text-gray-600 duration-100 font-bold">Back</Link>
+            </div>
+        </template>
+
+        <div>
+			<div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+				<div class="bg-white w-full sm:rounded-lg">
+					<div class="flex flex-col">
+						<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+							<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+								<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+									<div class="flex">
+										<div class="">
+											<img class="h-full w-48" :src="gamelink.division.cover_photo_url" v-if="gamelink.division.cover_photo_url" alt="" />
+											<PuzzleIcon v-else class="h-auto w-8 text-gray-500" />
+										</div>
+										<RequirementSteps :division="gamelink.division" />
+										<div class="">
+											{{ gamelink }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		    </div>
+        </div>
+    </app-layout>
+</template>
+
+<script>
+    import { defineComponent } from 'vue'
+    import AppLayout from '@/Layouts/AppLayout.vue'
+	import RequirementSteps from '@/Pages/Admin/Divisions/Partials/Requirement/RequirementSteps.vue'
+	import JetSectionBorder from '@/Jetstream/SectionBorder.vue'
+	import { PuzzleIcon } from '@heroicons/vue/solid'
+	import { Link } from '@inertiajs/inertia-vue3'
+
+    export default defineComponent({
+        components: {
+            AppLayout,
+			RequirementSteps,
+			JetSectionBorder,
+			PuzzleIcon,
+			Link,
+        },
+		props: {
+			gamelink: Object,
+		}
+    })
+</script>

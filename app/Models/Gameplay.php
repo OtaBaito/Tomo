@@ -26,6 +26,14 @@ class Gameplay extends Model
 	}
 
 	/**
+	 * Get the game's meta.
+	 */
+	public function meta()
+	{
+		return $this->hasMany(DivisionMeta::class);
+	}
+
+	/**
      * The attributes that are mass assignable.
      *
      * @var string[]

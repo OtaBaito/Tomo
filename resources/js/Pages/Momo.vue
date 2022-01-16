@@ -38,9 +38,9 @@
 
 								<div class="w-full">
 									<div v-for="link in category.links" class="rounded-md shadow w-full my-2 flex">
-										<Link :href="link.url" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10">
+										<a :href="link.url" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10">
 											{{ link.name }}
-										</Link>
+										</a>
 									</div>
 								</div>
 							</div>

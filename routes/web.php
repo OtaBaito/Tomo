@@ -44,6 +44,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 		});
 
 		Route::get('/division/requirements', [Division::class, 'requirementsView'])->name('division.fill');
+		Route::get('/division/fullfil/{id}', [Division::class, 'requirementFullfilView'])->name('division.fullfil');
 
 		Route::get('/division/link', [LinkDivision::class, 'show'])->name('division.link');
 		Route::post('/division/link', [LinkDivision::class, 'linked'])->name('division.link');

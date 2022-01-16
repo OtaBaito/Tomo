@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\GameDivision;
 use App\Models\DivisionRequirement;
+use App\Models\Gameplay;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -152,11 +153,15 @@ class Division extends Controller
      */
     public function requirementsView(Request $request)
     {
-		$dvs = GameDivision::all();
-		// $dvs->load('requirements');
+		$gml = Gameplay::all()->transform(fn ($division) => [
+			'id' => $division->id,
+			'user_id' => $division->user_id,
+			'division' => $division->division,
+			'created_at' => $division->created_at,
+		]);
 
         return Inertia::render('Admin/Divisions/Requirement', [
-			'divisions' => $dvs,
+			'gamelink' => $gml,
 		]);
     }
 
@@ -166,13 +171,14 @@ class Division extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    public function requirementView(Request $request, $id)
+    public function requirementFullfilView(Request $request, $id)
     {
-		$dvs = GameDivision::find($id);
-		$dvs->load('requirements');
+		$gml = Gameplay::find($id);
+		$gml->load('division');
+		$gml->load('meta');
 
-        return Inertia::render('Admin/Divisions/Requirement', [
-			'division' => $dvs,
+        return Inertia::render('Admin/Divisions/RequirementFullfil', [
+			'gamelink' => $gml,
 		]);
     }
 
