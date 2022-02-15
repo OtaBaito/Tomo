@@ -16,3 +16,5 @@ use App\Http\Controllers\Momo;
 */
 
 Route::get('/', [Momo::class, 'home'])->name('momolink');
+
+Route::get('/{url}', [Momo::class, 'juice'])->name('momojuice');

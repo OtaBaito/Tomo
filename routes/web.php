@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin;
 use App\Http\Controllers\Division;
 use App\Http\Controllers\LinkDivision;
 use App\Http\Controllers\Uploader;
+use App\Http\Controllers\Momo;
 use Inertia\Inertia;
 
 /*
@@ -41,6 +42,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 			Route::delete('/division/unrequire/{id}', [Division::class, 'unrequire'])->name('division.unrequire');
 			Route::delete('/division/delete/{id}', [Division::class, 'destroy'])->name('division.destroy');
 			Route::post('/division/create', [Division::class, 'create'])->name('division.add');
+
+			Route::name('momolink.')->group(function () {
+				Route::get('/momolink', [Momo::class, 'add'])->name('momolink.add');
+			});
 		});
 
 		Route::get('/division/requirements', [Division::class, 'requirementsView'])->name('division.fill');
