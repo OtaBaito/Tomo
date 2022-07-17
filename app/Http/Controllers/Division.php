@@ -11,6 +11,7 @@ use App\Models\Gameplay;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class Division extends Controller
 {
@@ -153,7 +154,7 @@ class Division extends Controller
      */
     public function requirementsView(Request $request)
     {
-		$gml = Gameplay::all()->transform(fn ($division) => [
+		$gml = Gameplay::where('user_id', Auth::id())->get()->transform(fn ($division) => [
 			'id' => $division->id,
 			'user_id' => $division->user_id,
 			'division' => $division->division,
@@ -173,9 +174,22 @@ class Division extends Controller
      */
     public function requirementFullfilView(Request $request, $id)
     {
-		$gml = Gameplay::find($id);
-		$gml->load('division');
-		$gml->load('meta');
+		$gml = Gameplay::where('id', $id)->get()->transform(fn ($gameplay) => [
+			'id' => $gameplay->id,
+			'game_divisions_id' => $gameplay->game_divisions_id,
+			'user_id' => $gameplay->user_id,
+			'division' => $gameplay->division->load('requirements.progress'),
+			'requirements' => $gameplay->requirements,
+			'meta' => $gameplay->meta,
+		])->first();
+
+		if ($gml['user_id'] !== Auth::id()) {
+			abort(403);
+		}
+
+
+		// $gml->division->load('requirements');
+		// $gml->division->requirements->load('progress');
 
         return Inertia::render('Admin/Divisions/RequirementFullfil', [
 			'gamelink' => $gml,

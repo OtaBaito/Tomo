@@ -24,7 +24,7 @@
                                 </jet-nav-link>
 
 								<jet-nav-link :href="route('admin.division.list')" :active="route().current('admin.division.list')" v-if="$page.props.app.hasPermission">
-                                    Games Division
+                                    Division
                                 </jet-nav-link>
 
 								<jet-nav-link :href="route('attachment.list')" :active="route().current('attachment.list')" v-if="$page.props.app.hasPermission">
@@ -159,7 +159,7 @@
                         </jet-responsive-nav-link>
 
 						<jet-responsive-nav-link :href="route('admin.division.list')" :active="route().current('admin.division.list')" v-if="$page.props.app.hasPermission">
-							Games Division
+							Division
 						</jet-responsive-nav-link>
 
 						<jet-responsive-nav-link :href="route('attachment.list')" :active="route().current('attachment.list')" v-if="$page.props.app.hasPermission">

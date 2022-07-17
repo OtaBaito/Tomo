@@ -1,29 +1,20 @@
 <template>
 	<div class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-		<div class="flex flex-col space-y-4">
-			<div class="flex items-center space-x-4">
-				<span class="w-6 h-6 ring ring-inset ring-red-500 rounded-full">
-					<CheckCircleIcon class="text-red-500" />
-				</span>
-				<span>Profile Screenshot</span>
+		<div v-if="requirements.length > 0">
+			<div v-if="progress.length === requirements.length">
+				Requirements Fullfiled
 			</div>
-			<div class="flex items-center space-x-4">
-				<span class="bg-red-500 w-6 h-6 rounded-full ring ring-inset ring-red-200"></span>
-				<span>Score Screenshot</span>
-			</div>
-			<div class="flex items-center space-x-4">
-				<span class="bg-gray-200 w-6 h-6 rounded-full"></span>
-				<span>Win Rate Screenshot</span>
-			</div>
-			<div class="flex items-center space-x-4">
-				<span class="bg-gray-200 w-6 h-6 rounded-full"></span>
-				<span>Join Team</span>
+			<div v-else class="flex flex-col space-y-4">
+				<div v-for="(requirement, index) in requirements" :key="requirement.id" class="flex items-center space-x-4">
+					<span v-if="requirement.progress.length > 0" class="w-6 h-6 ring ring-inset ring-red-500 rounded-full">
+						<CheckCircleIcon class="text-red-500" />
+					</span>
+					<span v-else-if="(progress.length)  === index" class="bg-red-500 w-6 h-6 rounded-full ring ring-inset ring-red-200"></span>
+					<span v-else class="bg-gray-200 w-6 h-6 rounded-full"></span>
+				</div>
 			</div>
 		</div>
-		<div class="fullfiled even this page would be auto hidden by system">
-			Requirements Fullfiled
-		</div>
-		<div class="when no requirement">
+		<div v-else>
 			No Requirements
 		</div>
 	</div>
@@ -50,7 +41,8 @@
 			PlatformBar,
 		},
 		props: {
-			division: Object,
+			requirements: Object,
+			progress: Object,
 		}
 	})
 </script>

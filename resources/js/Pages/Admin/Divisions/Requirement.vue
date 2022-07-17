@@ -12,7 +12,8 @@
 					<RequirementTable :gamelink="gamelink" />
 				</div>
 				<div v-else class="flex justify-center items-center text-gray-500">
-					You are not joined on any <a target="_blank" :href="route('admin.division.link')" class="underline text-gray-600 hover:text-gray-900"> division</a>.
+					You are not joined on any
+					<a target="_blank" :href="route('admin.division.link')" class="underline text-gray-600 hover:text-gray-900"> division</a>.
 				</div>
 		    </div>
         </div>

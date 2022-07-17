@@ -34,6 +34,14 @@ class Gameplay extends Model
 	}
 
 	/**
+	 * Get the game's meta.
+	 */
+	public function requirements()
+	{
+		return $this->hasMany(GameplayRequirement::class, 'gameplays_id');
+	}
+
+	/**
      * The attributes that are mass assignable.
      *
      * @var string[]

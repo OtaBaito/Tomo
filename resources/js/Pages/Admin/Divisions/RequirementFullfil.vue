@@ -18,12 +18,18 @@
 								<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 									<div class="flex">
 										<div class="">
-											<img class="h-full w-48" :src="gamelink.division.cover_photo_url" v-if="gamelink.division.cover_photo_url" alt="" />
+											<img class="h-full w-48 object-cover" :src="gamelink.division.cover_photo_url" v-if="gamelink.division.cover_photo_url" alt="" />
 											<PuzzleIcon v-else class="h-auto w-8 text-gray-500" />
 										</div>
-										<RequirementSteps :division="gamelink.division" />
-										<div class="">
-											{{ gamelink }}
+										<div class="flex items-center w-full">
+											<RequirementSteps :requirements="gamelink.division.requirements" :progress="gamelink.requirements" />
+											<div class="bg-gray-50">
+												<div class="flex w-full justify-between items-center">
+													<h1 class="font-semibold text-lg text-gray-800 leading-tight">{{ gamelink.division.requirements[0].title }}</h1>
+													<span v-if="gamelink.division.requirements[0].mandate" class="font-semibold text-xs text-green-800 bg-green-100 leading-5 rounded-full px-2">Required</span>
+													<input :type="gamelink.division.requirements[0].attachment" :name="requirement.id" value="">
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>

@@ -26,6 +26,14 @@ class DivisionRequirement extends Model
 	}
 
 	/**
+	 * Get the game's meta.
+	 */
+	public function progress()
+	{
+		return $this->hasMany(GameplayRequirement::class, 'division_requirements_id');
+	}
+
+	/**
      * The attributes that are mass assignable.
      *
      * @var string[]
